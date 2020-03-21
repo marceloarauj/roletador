@@ -1,0 +1,41 @@
+@font-face{
+    font-family: persephone;
+    src: url('../fonts/Persephone.ttf');
+}
+
+.header-formated{
+    width:100%;
+    height:12vh;
+    padding:0px;
+    margin:0px;
+    border-bottom: 2px solid gray;
+    background-image: linear-gradient(45deg,rgb(182, 77, 182),white,rgb(182, 77, 182));
+}
+.title{
+    font-size: 150%;
+    font-family: persephone;
+    color:black;
+}
+.full-height{
+    height:100%;
+}
+.button-format{
+    background-color: rgb(75, 73, 73);
+    box-shadow:2px 2px 2px gray;
+    color:white;
+    height: 63%;
+    width: 100%;
+    padding: 0px;
+    margin:0px;
+    margin-top: 8% !important;
+}
+.padding-format{
+    padding-left: 5%;
+}
+.full-height{
+    height:100%;
+}
+
+h3 b{
+    font-weight: 900;
+}

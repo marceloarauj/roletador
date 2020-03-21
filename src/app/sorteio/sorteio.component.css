@@ -1,0 +1,57 @@
+.format-page{
+    padding: 0px;
+    margin: 0px;
+    width: 100vw;
+    height:88vh;
+}
+.full-size{
+    height:100%;
+    width:100%;
+}
+.sorteio-div{
+    overflow-y: scroll;
+    height:90%;
+}
+div::-webkit-scrollbar {
+    width: 12px;
+}
+div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .3);
+    background-color: rgb(179, 72, 164);
+}
+.participantes-div{
+    height:100%;
+    border-right: 2px solid gray;
+}
+.margin-format{
+    margin-top: 10%;
+    margin-bottom:10%;
+}
+
+.button-format:focus{
+    outline:none;
+}
+.icon-class{
+    width:100%;
+    transition: 0.7s;
+}
+.icon-class:hover{
+    opacity: .2;
+}
+.margin-padding-format{
+    margin-bottom: 20%;
+    padding-left: 10%;
+}
+.nick{
+    font-family: cursive;
+}
+.modal-table-formated{
+    margin-top: 5%;
+}
+.format-table{
+    width:90%;
+}
+.icon-class-row{
+    width:40px;
+}

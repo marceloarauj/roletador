@@ -1,0 +1,47 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$mat-prime: (
+  50: #ddc7f7,
+  100: #ddc7f7,
+  200: #ddc7f7,
+  300: #ddc7f7,
+  400: #ddc7f7,
+  500: #ddc7f7,
+  600: #ddc7f7,
+  700: #ddc7f7,
+  800: #ddc7f7,
+  900: #ddc7f7,
+  A100: #ddc7f7,
+  A200: #ddc7f7,
+  A400: #ddc7f7,
+  A700: #ddc7f7,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  )
+);
+
+$Enigma-primary: mat-palette($mat-indigo);
+$Enigma-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$Enigma-warn: mat-palette($mat-red);
+
+$Enigma-theme: mat-light-theme($mat-prime, $Enigma-accent, $Enigma-warn);
+
+
+@include angular-material-theme($Enigma-theme);
+

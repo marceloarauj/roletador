@@ -1,0 +1,51 @@
+<div class="container-fluid format-page">
+    <div class="row full-size">
+        <div class="col-2 participantes-div">
+            <div class="row justify-content-center margin-format">
+                <mat-form-field style="width:80%">
+                    <mat-label>Nick</mat-label>
+                    <input maxlength="15" [(ngModel)]="this.nick" class="nick" matInput>
+                </mat-form-field>            
+            </div>
+            <div class="row align-items-center">
+                <div *ngFor="let item of classes; let i=index" class="col-4 margin-padding-format">
+                    <img (click)="setSelectedClass(item.id)" matTooltip="{{classes[i].nome}}" class="icon-class" src="{{classes[i].path_icon}}" />
+                    <span *ngIf="this.getSelectedClass() === item.id" matBadge="o" matBadgeOverlap="false"></span>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button (click)="roletar()" mat-icon-button class="button-format">
+                    <mat-icon matTooltip="ROLETAR" svgIcon="roletar"></mat-icon>
+                </button> 
+            </div>
+        </div>
+        <div class="col-10 sorteio-div">
+            <div class="row justify-content-center modal-table-formated">
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 format-table">
+                    
+                    <ng-container matColumnDef="Classe">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Classe </th>
+                        <td mat-cell *matCellDef="let element">
+                            <img class="icon-class-row" src="{{this.obterClasseIcon(element.Classe)}}"/>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Nick">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nick </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Nick}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Pontuacao">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pontuação </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Pontuacao}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="IP">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> IP </th>
+                        <td mat-cell *matCellDef="let element"> {{element.IP}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="dataColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: dataColumns;"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
