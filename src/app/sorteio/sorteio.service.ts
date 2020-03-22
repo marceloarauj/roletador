@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-
+import {BehaviorSubject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class SorteioService {
 
-  private BASE_URL = 'http://127.0.0.1:7000/';
+  private BASE_URL = 'http://191.186.131.226:7000/';
+  private comportamento = new BehaviorSubject('');
   constructor() { }
 
   async enviarSorteio(dados){
@@ -18,6 +19,8 @@ export class SorteioService {
 
     if(data.status === 200){
       return data.data;
+    }else{
+      alert("Você já está participando deste sorteio");
     }
     
   }
@@ -29,7 +32,7 @@ export class SorteioService {
     }
   }
 
-  webSocketAPI:string = "http://localhost:7000/ws";
+  webSocketAPI:string = "http://191.186.131.226:7000/ws";
   topico:string = "/get/users";
   stompClient:any;
   
@@ -40,7 +43,7 @@ export class SorteioService {
 
     _this.stompClient.connect({},function(frame){
       _this.stompClient.subscribe(_this.topico,function(e){
-
+        
         // on connect event
         _this.MessageReceived(e);
       });
@@ -48,6 +51,10 @@ export class SorteioService {
   }
 
   public MessageReceived(e){
-    alert(JSON.stringify(e.body.replace("/","")));
+    this.comportamento.next(e.body);
+  }
+
+  public getComportamento(){
+    return this.comportamento;
   }
 }

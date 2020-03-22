@@ -11,10 +11,14 @@
     border-bottom: 2px solid gray;
     background-image: linear-gradient(45deg,rgb(182, 77, 182),white,rgb(182, 77, 182));
 }
-.title{
+.title h3{
     font-size: 150%;
     font-family: persephone;
     color:black;
+}
+.version{
+    margin-top:3%;
+    margin-left: 3%;
 }
 .full-height{
     height:100%;

@@ -4,6 +4,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { SorteioService } from './sorteio.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-sorteio',
@@ -42,24 +43,32 @@ export class SorteioComponent implements OnInit {
 
   nick:string;
 
-  participantes:Participantes[] = [
-    {Nick: '_Hiruzen_',Classe: 10,Pontuacao: 400,IP:'192.168.1.24'},
-    {Nick: '\'Kaisen',Classe:8,Pontuacao:500,IP:'192.168.1.25'},
-    {Nick: 'MixRT',Classe:7,Pontuacao:752,IP:'192.168.1.92'},
-    {Nick: 'BL3ND',Classe:12,Pontuacao:622,IP:'192.168.1.35'},
-  ]
+  participantes:Participantes[] = []
   
   dataColumns:string[]=['Nick','Classe','Pontuacao','IP']
   dataSource = new MatTableDataSource(this.participantes)
 
+
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   ngOnInit() {
+    this.preCarregar();
     this.sorteioServ.connect();
     this.sort.sort({id:'Pontuacao',start:'desc',disableClear:false});
     this.dataSource.sort = this.sort;
+    
+    this.sorteioServ.getComportamento().subscribe(data =>{
+      if(data == '')
+        return; 
+
+      this.refreshTable(data,true);
+    });
   }
 
-
+  async preCarregar(){
+    let participantes = await this.sorteioServ.obterParticipantes();
+    
+    this.refreshTable(participantes,false);
+  }
   obterClasseIcon(classe):string{
 
     return this.classes.find(x => x.id === classe).path_icon;
@@ -74,26 +83,37 @@ export class SorteioComponent implements OnInit {
       alert("informe o nick corretamente");
       return;
     }
-    //let send = this.sorteioServ.enviarSorteio({nick:this.nick,classe:this.getSelectedClass});
     this.sorteioServ.enviarSorteio({nick:this.nick,classe:this.getSelectedClass()})
     this.nick = "";
 
-    //send.then(e =>{
-    //  alert(e);
-    //})
   }
+  
 
-  refreshTable(){ // só dar um push na lista de participantes e chamar esse método
+  refreshTable(participan,reloaded){ 
+
+    this.refreshParticipants(participan,reloaded);
+
     this.dataSource = new MatTableDataSource(this.participantes);
     this.dataSource.sort = this.sort; 
   }
-  refreshParticipants(){
+  refreshParticipants(participan,reload){
 
-    let participants = this.sorteioServ.obterParticipantes();
-    let tempParticipants:Participantes[];
+    let tempParticipantes:Participantes[] = [];
+    let arrayPart = participan;
+   
+    if(reload)
+     arrayPart= JSON.parse(participan);
 
-    participants.then(e =>{
-    });
+     Array.prototype.forEach.call(arrayPart,element =>{
+      let participante:Participantes = {
+        Nick:element.nick,
+        IP:element.ip,
+        Pontuacao: element.pontuacao,
+        Classe: element.classe
+       }
+       tempParticipantes.push(participante);
+     });
+    this.participantes = tempParticipantes;
   }
 }
 
