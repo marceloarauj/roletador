@@ -29,10 +29,7 @@
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css"
             ],
-            "scripts": [
-          	"correction":"npx npm-force-resolutions",
-	"reinstalar": "npm install"
-             ]
+            "scripts": []
           },
           "configurations": {
             "production": {
