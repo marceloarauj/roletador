@@ -8,7 +8,7 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class SorteioService {
 
-  private BASE_URL = 'http://191.186.131.226:7000/';
+  private BASE_URL = 'http://apiforsumidao.herokuapp.com/';
   private comportamento = new BehaviorSubject('');
   constructor() { }
 
@@ -18,6 +18,7 @@ export class SorteioService {
                                 {nick:dados.nick,classe: dados.classe});
 
     if(data.status === 200){
+      console.log(data);
       return data.data;
     }else{
       alert("Você já está participando deste sorteio");
