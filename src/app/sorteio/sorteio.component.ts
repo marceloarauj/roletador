@@ -41,7 +41,7 @@ export class SorteioComponent implements OnInit {
     {id:12, nome:'Guerreiro',path_icon:'../assets/wr.ico'}
   ]
   selectedClass:number;
-  setSelectedClass(id){this.selectedClass = id, this.openSnack('')}
+  setSelectedClass(id){this.selectedClass = id}
   getSelectedClass(){return this.selectedClass}
 
   nick:string;
@@ -89,7 +89,15 @@ export class SorteioComponent implements OnInit {
       alert("informe o nick corretamente");
       return;
     }
-    this.sorteioServ.enviarSorteio({nick:this.nick,classe:this.getSelectedClass()})
+    this.sorteioServ.enviarSorteio({nick:this.nick,classe:this.getSelectedClass()}).then(
+      e =>{
+        if(e === 200){
+          this.openSnack("Sorteio realizado !");
+        }else{
+          this.openSnack("Você já está participando deste sorteio");
+        }
+      }
+    )
     this.nick = "";
 
   }
@@ -125,11 +133,8 @@ export class SorteioComponent implements OnInit {
   openSnack(mensagem){
     this.config = new MatSnackBarConfig();
     this.config.duration = 3000;
-
-    let configs:{
-      duration: 5000
-    }
-    this.snack.open("Você já está participando deste sorteio !",'Fechar',this.config)
+    
+    this.snack.open(mensagem,'Fechar',this.config)
   }
 }
 

@@ -17,13 +17,7 @@ export class SorteioService {
     let data = await axios.post(this.BASE_URL + "sorteador/participante",
                                 {nick:dados.nick,classe: dados.classe});
 
-    if(data.status === 200){
-      return data.data;
-    }else{
-      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-      console.log(data.statusText);
-    }
-
+    return data.status;
   }
   async obterParticipantes(){
     let data = await axios.get(this.BASE_URL + "sorteador/obter");
