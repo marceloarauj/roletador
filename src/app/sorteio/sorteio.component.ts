@@ -93,9 +93,11 @@ export class SorteioComponent implements OnInit {
       e =>{
         if(e === 200){
           this.openSnack("Sorteio realizado !");
-        }else{
+        }
+        if(e === 400){
           this.openSnack("Você já está participando deste sorteio");
         }
+        
       }
     )
     this.nick = "";
