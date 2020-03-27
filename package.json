@@ -3,11 +3,16 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng run",
+    "start": "node server.js",
+    "postinstall": "ng build --aot --prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engines": {
+    "node": "10.16.3",
+    "npm": "6.9.0"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +28,7 @@
     "@angular/router": "~8.2.7",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "net": "^1.0.2",
     "ngx-bootstrap": "^5.5.0",
     "rxjs": "~6.4.0",
