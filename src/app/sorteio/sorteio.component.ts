@@ -89,17 +89,10 @@ export class SorteioComponent implements OnInit {
       alert("informe o nick corretamente");
       return;
     }
-    this.sorteioServ.enviarSorteio({nick:this.nick,classe:this.getSelectedClass()}).then(
-      e =>{
-        if(e === 200){
-          this.openSnack("Sorteio realizado !");
-        }
-        if(e === 400){
-          this.openSnack("Você já está participando deste sorteio");
-        }
-        
-      }
-    )
+    this.sorteioServ.enviarSorteio({nick:this.nick,classe:this.getSelectedClass()})
+    .then(e =>{this.openSnack("Sorteio realizado !");})
+    .catch(e => {this.openSnack("Você já está participando deste sorteio");})
+
     this.nick = "";
 
   }
