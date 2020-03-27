@@ -32,7 +32,9 @@ export class SorteioService {
       return data.data;
     }
   }
-
+  async releaseDB(){
+    let data = await axios.get(this.BASE_URL + "db")
+  }
   webSocketAPI:string = "https://apisumi.herokuapp.com/ws";
   topico:string = "/get/users";
   stompClient:any;

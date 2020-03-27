@@ -51,6 +51,7 @@ export class SorteioComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   ngOnInit() {
+    this.releaseDB();
     this.preCarregar();
     this.sorteioServ.connect();
     this.sort.sort({id:'Pontuacao',start:'desc',disableClear:false});
@@ -63,7 +64,9 @@ export class SorteioComponent implements OnInit {
       this.refreshTable(data,true);
     });
   }
-
+  async releaseDB(){
+    this.sorteioServ.releaseDB();
+  }
   async preCarregar(){
     let participantes = await this.sorteioServ.obterParticipantes();
     
