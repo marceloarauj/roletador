@@ -22,8 +22,8 @@ export class HeaderComponent implements OnInit {
 
     let resetar = await axios.post('https://apisumi.herokuapp.com/sorteador/resetar',
                                       {login:this.login,password:this.password})
-                                      .catch(e =>{this.openSnack("Login ou senha incorretos");
-                                      }).then(e =>{this.openSnack("Sorteio Reiniciado")});
+                                      .then(e =>{ if (e.status === 200){this.openSnack("Sorteio Reiniciado")}})
+                                      .catch(e =>{this.openSnack("Login ou senha incorretos");})
 
     this.password = '';
 
