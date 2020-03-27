@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const nomeApp = process.env.npm_package_name;
 const app = express();
- 
+const __dirname = 'Enigma'
+
 app.use(express.static(`${__dirname}/dist/${nomeApp}`));
  
 app.get('/*', (req, res) => {
