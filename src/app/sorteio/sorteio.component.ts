@@ -82,11 +82,11 @@ export class SorteioComponent implements OnInit {
 
   roletar(){
     if(this.getSelectedClass() == undefined || this.getSelectedClass() == null){
-      alert("Selecione a classe"); 
+      this.openSnack("Selecione a classe")
       return;
     }
     if(this.nick == "" ||this.nick == undefined ||this.nick.length < 4){
-      alert("informe o nick corretamente");
+      this.openSnack("Escreva o nick corretamente");
       return;
     }
     this.sorteioServ.enviarSorteio({nick:this.nick,classe:this.getSelectedClass()})
