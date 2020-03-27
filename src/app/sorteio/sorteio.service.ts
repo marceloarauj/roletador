@@ -8,7 +8,7 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class SorteioService {
 
-  private BASE_URL = 'http://apiforsumidao.herokuapp.com/';
+  private BASE_URL = 'https://apisumi.herokuapp.com/';
   private comportamento = new BehaviorSubject('');
   constructor() { }
 
@@ -33,7 +33,7 @@ export class SorteioService {
     }
   }
 
-  webSocketAPI:string = "http://191.186.131.226:7000/ws";
+  webSocketAPI:string = "https://apisumi.herokuapp.com/ws";
   topico:string = "/get/users";
   stompClient:any;
   

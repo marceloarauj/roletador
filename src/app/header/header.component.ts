@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   async resetar(){
 
-    let resetar = await axios.post('http://191.186.131.226:7000/sorteador/resetar',
+    let resetar = await axios.post('https://apisumi.herokuapp.com/sorteador/resetar',
                                       {login:this.login,password:this.password}).catch(e =>{
                                         alert("Login ou senha incorretos");
                                       });
