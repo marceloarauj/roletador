@@ -18,12 +18,12 @@ export class SorteioService {
                                 {nick:dados.nick,classe: dados.classe});
 
     if(data.status === 200){
-      console.log(data);
       return data.data;
     }else{
-      alert("Você já está participando deste sorteio");
+      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+      console.log(data.statusText);
     }
-    
+
   }
   async obterParticipantes(){
     let data = await axios.get(this.BASE_URL + "sorteador/obter");

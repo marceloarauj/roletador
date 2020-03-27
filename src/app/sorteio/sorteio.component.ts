@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { SorteioService } from './sorteio.service';
 import { BehaviorSubject } from 'rxjs';
+import {MatSnackBar,MatSnackBarConfig} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sorteio',
@@ -15,9 +16,11 @@ export class SorteioComponent implements OnInit {
 
   constructor(private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer,
+              private snack: MatSnackBar,
               private sorteioServ:SorteioService) 
               {this.RegistrarIcones(); }
 
+  private config: MatSnackBarConfig;
   RegistrarIcones(){
     this.matIconRegistry.addSvgIcon
       ('roletar',this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/numbers-blocks.svg'));
@@ -38,7 +41,7 @@ export class SorteioComponent implements OnInit {
     {id:12, nome:'Guerreiro',path_icon:'../assets/wr.ico'}
   ]
   selectedClass:number;
-  setSelectedClass(id){this.selectedClass = id}
+  setSelectedClass(id){this.selectedClass = id, this.openSnack('')}
   getSelectedClass(){return this.selectedClass}
 
   nick:string;
@@ -117,6 +120,16 @@ export class SorteioComponent implements OnInit {
        tempParticipantes.push(participante);
      });
     this.participantes = tempParticipantes;
+  }
+  
+  openSnack(mensagem){
+    this.config = new MatSnackBarConfig();
+    this.config.duration = 3000;
+
+    let configs:{
+      duration: 5000
+    }
+    this.snack.open("Você já está participando deste sorteio !",'Fechar',this.config)
   }
 }
 
