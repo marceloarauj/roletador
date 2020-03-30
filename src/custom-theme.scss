@@ -2,6 +2,13 @@
 
 @include mat-core();
 
+.mat-focused .mat-form-field-label {
+  color: red !important;
+}
+.mat-form-field-ripple {
+  background-color: red !important;
+}
+
 $mat-prime: (
   50: #ddc7f7,
   100: #ddc7f7,
