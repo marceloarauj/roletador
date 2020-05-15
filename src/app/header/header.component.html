@@ -6,7 +6,8 @@
                     <b>PT S U M I D A O </b>
                 </h3>
             </span>
-            <span class="version">v1.1</span>
+            <span *ngIf="!aniversario"class="version">v1.1</span>
+            <span *ngIf="aniversario" class="version">v.Happy.Birthday</span>
         </div>
         <div class="col-2">
             <mat-form-field appearance="outline">

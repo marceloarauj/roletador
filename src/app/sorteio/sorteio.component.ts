@@ -59,7 +59,23 @@ export class SorteioComponent implements OnInit {
     this.sorteioServ.connect();
     this.sort.sort({id:'Pontuacao',start:'desc',disableClear:false});
     this.dataSource.sort = this.sort;
-    
+    let aniversario = true;
+    if(aniversario){
+      this.classes = [
+        {id:1, nome:'Arqueiro',path_icon:'../assets/hiru.png'},
+        {id:2, nome:'Sacerdote',path_icon:'../assets/hiru.png'},
+        {id:3, nome:'Espiritualista',path_icon:'../assets/hiru.png'},
+        {id:4, nome:'Mercenário',path_icon:'../assets/hiru.png'},
+        {id:5, nome:'Mago',path_icon:'../assets/hiru.png'},
+        {id:6, nome:'Místico',path_icon:'../assets/hiru.png'},
+        {id:7, nome:'Retalhador',path_icon:'../assets/hiru.png'},
+        {id:8, nome:'Arcano',path_icon:'../assets/hiru.png'},
+        {id:9, nome:'Tormentador',path_icon:'../assets/hiru.png'},
+        {id:10, nome:'Bárbaro',path_icon:'../assets/hiru.png'},
+        {id:11, nome:'Feiticeira',path_icon:'../assets/hiru.png'},
+        {id:12, nome:'Guerreiro',path_icon:'../assets/hiru.png'}
+      ]
+    }
     this.sorteioServ.getComportamento().subscribe(data =>{
       if(data == '')
         return; 

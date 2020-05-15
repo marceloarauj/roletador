@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   login:String;
   password:String;
   private config: MatSnackBarConfig;
+  aniversario:Boolean = true;
 
   async resetar(){
 
