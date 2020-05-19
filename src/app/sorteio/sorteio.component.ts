@@ -59,7 +59,7 @@ export class SorteioComponent implements OnInit {
     this.sorteioServ.connect();
     this.sort.sort({id:'Pontuacao',start:'desc',disableClear:false});
     this.dataSource.sort = this.sort;
-    let aniversario = true;
+    let aniversario = false;
     if(aniversario){
       this.classes = [
         {id:1, nome:'Arqueiro',path_icon:'../assets/hiru.png'},
